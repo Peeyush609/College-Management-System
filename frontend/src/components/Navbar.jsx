@@ -17,7 +17,7 @@ const Navbar = () => {
     <div className="shadow-md px-6 py-4 mb-6">
       <div className="max-w-7xl flex justify-between items-center mx-auto">
         <p className="font-semibold text-2xl text-blue-800">
-          Welcome to our site
+          Welcome to CMS
         </p>
 
         <CustomButton variant="danger" onClick={logouthandler}>

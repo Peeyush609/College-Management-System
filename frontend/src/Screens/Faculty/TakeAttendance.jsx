@@ -76,6 +76,7 @@ const TakeAttendance = () => {
         semester: selectedSemester,
         date: new Date(),
         takenBy: facultyId,
+        isPresent,
         status: isPresent ? "present" : "absent",
       }));
 
