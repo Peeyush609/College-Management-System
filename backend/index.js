@@ -1,5 +1,5 @@
 require("dotenv").config(); // Always at the top
-const connectToMongo = require("./database/db");
+const connectToMongo = require("./Database/db");
 const express = require("express");
 const path = require("path");
 const cors = require("cors");
