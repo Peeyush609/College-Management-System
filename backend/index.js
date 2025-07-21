@@ -14,8 +14,8 @@ const attendanceRoutes = require("./routes/attendance.route");
 // Middleware
 app.use(
   cors({
-    origin: process.env.FRONTEND_API_LINK || "*", // Add fallback for development
-    credentials: true,
+    origin:"*", // Add fallback for development
+ 
   })
 );
 
