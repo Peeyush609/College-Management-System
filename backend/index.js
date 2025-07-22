@@ -9,22 +9,16 @@ const app = express();
 // Connect to MongoDB
 connectToMongo();
 
-// CORS Configuration
+// CORS Configuration (Set this before any routes or middleware)
 const corsOptions = {
-  origin: process.env.FRONTEND_API_LINK || "*", // Replace with your frontend URL in production
+  origin: process.env.FRONTEND_API_LINK || "*", // e.g. 'https://college-management-system-yani.vercel.app'
   credentials: true,
 };
 
-app.use(cors(corsOptions));
+app.use(cors(corsOptions)); // This is enough in most cases
 
-// Optional: Add CORS headers manually (some Vercel edge functions need this)
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", process.env.FRONTEND_API_LINK || "*");
-  res.setHeader("Access-Control-Allow-Credentials", "true");
-  res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-  next();
-});
+// Optional: CORS Preflight manual handling (Only if needed for edge-case issues)
+app.options("*", cors(corsOptions)); // Handles preflight requests globally
 
 // Body parser
 app.use(express.json());
@@ -48,7 +42,7 @@ app.use("/api/timetable", require("./routes/timetable.route"));
 
 // Local development server only
 if (process.env.NODE_ENV !== "production") {
-  const port = process.env.PORT || 4000;
+  const port = process.env.PORT || 3000;
   app.listen(port, () => {
     console.log(`Server Listening On http://localhost:${port}`);
   });
