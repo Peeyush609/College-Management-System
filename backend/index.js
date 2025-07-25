@@ -9,13 +9,24 @@ const app = express();
 // Connect to MongoDB
 connectToMongo();
 
-// CORS Configuration (Set this before any routes or middleware)
+
+const allowedOrigins = [
+  "https://college-management-system-jo6157wg6.vercel.app",
+  "http://localhost:3000"
+];
+
 const corsOptions = {
-  origin: process.env.FRONTEND_API_LINK || "*", // e.g. 'https://college-management-system-yani.vercel.app'
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   credentials: true,
 };
 
-app.use(cors(corsOptions)); // This is enough in most cases
+app.use(cors(corsOptions));
 
 
 // Body parser
