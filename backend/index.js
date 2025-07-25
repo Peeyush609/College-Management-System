@@ -17,8 +17,6 @@ const corsOptions = {
 
 app.use(cors(corsOptions)); // This is enough in most cases
 
-// Optional: CORS Preflight manual handling (Only if needed for edge-case issues)
-app.options("*", cors(corsOptions)); // Handles preflight requests globally
 
 // Body parser
 app.use(express.json());
